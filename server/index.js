@@ -1,18 +1,24 @@
 const PORT = process.env.port || 3000;
 const express = require("express");
-// const axios = require('axios');
-// const cheerio = require('cheerio');
+// const bodyParser = require('body-parser');
+const router = require("./router");
+const sequelize = require('./models/index')
 
-// const router = require("./router");
 // const cors = require("cors");
-const { filterBySite } = require('./models/filterByWebsite');
+// const { filterBySite } = require('./controllers/filterByWebsite');
 
 const app = express();
 
-app.get('/', async (req, res) => {
-  res.send(await filterBySite());
-});
+app.use(express.json());
+app.use(router);
 
-app.listen(PORT, () => {
-  console.log(`Server is running in PORT:${PORT}`)
-})
+// app.get('/', async (req, res) => {
+//   res.send(await filterBySite());
+// });
+
+(async function bootstrap() {
+  await sequelize.sync();
+  app.listen(PORT, () => {
+    console.log(`Server is running in PORT:${PORT}`)
+  })
+})()
