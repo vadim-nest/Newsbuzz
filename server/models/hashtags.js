@@ -1,29 +1,28 @@
-const { DataTypes } = require('sequelize');
+// const { DataTypes } = require('sequelize');
+
 
 // We export a function that defines the model.
 // This function will automatically receive as parameter the Sequelize connection object.
-module.exports = (sequelize) => {
-	sequelize.define('hashtag', {
-		// The following specification of the 'id' attribute could be omitted
-		// since it is the default.
-		// id: {
-		// 	allowNull: false,
-		// 	autoIncrement: true,
-		// 	primaryKey: true,
-		// 	type: DataTypes.INTEGER
-		// },
-		hashtag: {
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define('hashtag', {
+    // id
+    // date
+    // Might need to add article date column later, if want to roll back functionality
+    location_id: {
+			allowNull: false,
+			type: DataTypes.INTEGER,
+    },
+    hashtag: {
 			allowNull: false,
 			type: DataTypes.STRING,
-		},
-		count: {
+    },
+    hashtag_count: {
 			allowNull: false,
-			type: DataTypes.INTEGER
-		},
-    articles_ids: {
+			type: DataTypes.INTEGER,
+    },
+    url_id: {
 			allowNull: false,
-			type: DataTypes.ARRAY(DataTypes.DECIMAL)
-		},
-
+			type: DataTypes.INTEGER,
+    },
 	});
 };

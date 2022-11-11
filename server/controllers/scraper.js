@@ -2,46 +2,46 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const { getArticles, addArticle  } = require('./articles.js');
 const sequelize = require('../models');
-// const https = require('https');
-// const express = require("express");
-// const app = express();
-// const fs = require('fs');
-// const writeStream = fs.createWriteStream('devBlog.csv');
 
-async function mainPageLinks (websiteName, linkFilter) {
+async function mainPageLinks (websiteName, linkFilter, partialLink, location_id) {
   let links = [];
 
   await axios(websiteName)
     .then((res) => {
       const data = res.data;
       const $ = cheerio.load(data);
-      $('div').each((_, article) => {
+      $('div').each((i, article) => {
         const $article = $(article);
-        const url = $article.find('a').attr('href');
+        let url = $article.find('a').attr('href');
+        // console.log(url);
 
         if (url && url.includes(linkFilter) && url !== 'url') {
+
+          // If the link is partial
+          if (partialLink && !url.includes('http') && partialLink !== undefined) {
+            url = partialLink + url;
+          }
+
           if (!links.includes(url)) {
             links.push(url);
           }
-
         }
       })
       .toArray();
 	}).catch(err => console.log(err));
 
-  return links;
+  return [links, location_id];
 }
 
 
-// !!! - working, getting hashtags from an article from The Guardian
+// Working, getting hashtags from an article from The Guardian
 // Function to get the text from the page (Guardian)
-// const pageLink = 'https://www.theguardian.com/business/2022/nov/03/bank-of-england-raises-interest-rates-to-3-percent';
-
 async function getHashTagsFromArticle (pageLink) {
+  console.log('getHashTagsFromArticle')
+  console.log(pageLink);
 
   let hashtags = [];
   let allArrs = [];
-  let articleId;
 
   await axios(pageLink)
   .then((res) => {
@@ -76,9 +76,10 @@ async function getHashTagsFromArticle (pageLink) {
 
   // 2. Store a hashtag object in the 'hashtags' array
   // 2.1 Check by key if already includes, then just add + 1
-  // !!! Create variables, what is this mess?
   //
   // The code below only works with a sorted array
+
+  // !!! Don't delete the count. You need to store it later in the realtions table maybe? not sure. (when returning the hashtags, return the count into the raltions table)
   allArrs.forEach(async el => {
 
     if (hashtags[hashtags.length - 1]
@@ -89,22 +90,19 @@ async function getHashTagsFromArticle (pageLink) {
         hashtags[hashtags.length - 1].hashtag.charAt(0).toLowerCase();
       }
     } else {
-
-      // console.log('articleId, line 104:', articleId)
-      articleId = await findArticleId(pageLink);
-      // console.log('articleId, line 62:', articleId);
-
       hashtags.push({
         hashtag: el,
-        count: 1,
-        articles_ids: articleId
+        count: 1
       })
     }
   })
-
+  // You have all of the variables at this point?
+  // hashtags
+  console.log(hashtags);
   return (hashtags);
 }
 
+// Storing articles in the db!
 async function storeArticle (link, first_p) {
   try {
     const article = {
@@ -113,20 +111,20 @@ async function storeArticle (link, first_p) {
     }
     await sequelize.models.article.create(article);
   } catch (error) {
-    console.log(error);
+    console.log();
   }
 }
 
-async function findArticleId (link) {
-  const project = await sequelize.models.article.findOne({ where: { url: link } });
-  if (project === null) {
-    console.log('Not found!');
-  } else {
-    // console.log(project instanceof sequelize.models.article); // true
-    // console.log('project.id, line 133:', project.id); // 'My Title'
-    return project.id;
-  }
-}
+// async function findArticleId (link) {
+  // const project = await sequelize.models.article.findOne({ where: { url: link } });
+  // if (project === null) {
+  //   console.log('Not found!');
+  // } else {
+  //   // console.log(project instanceof sequelize.models.article); // true
+  //   // console.log('project.id, line 133:', project.id); // 'My Title'
+  //   return project.id;
+  // }
+// }
 
 
 module.exports = { mainPageLinks, getHashTagsFromArticle };
