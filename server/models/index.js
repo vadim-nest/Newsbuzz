@@ -29,7 +29,7 @@ const files = fs.readdirSync(__dirname);
 for (let file of files) {
   if (file !== 'index.js') {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    console.log(model.name);
+    // console.log(model.name);
     db[model.name] = model;
   }
 }

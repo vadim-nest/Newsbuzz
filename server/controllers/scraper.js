@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const { getArticles, addArticle  } = require('./articles.js');
 const sequelize = require('../models');
 
-async function mainPageLinks (websiteName, linkFilter, partialLink, location_id) {
+async function mainPageLinks (websiteName, linkFilter, partialLink, location_id, toExclude) {
   let links = [];
 
   await axios(websiteName)
@@ -15,7 +15,7 @@ async function mainPageLinks (websiteName, linkFilter, partialLink, location_id)
         let url = $article.find('a').attr('href');
         // console.log(url);
 
-        if (url && url.includes(linkFilter) && url !== 'url') {
+        if (url && url.includes(linkFilter) && url !== 'url' && !url.includes(toExclude)) {
 
           // If the link is partial
           if (partialLink && !url.includes('http') && partialLink !== undefined) {
