@@ -5,6 +5,7 @@ const path = require('path');
 
 const sequelize = new Sequelize('buzznews', 'postgres', '1234', {
   dialect: 'postgres',
+  logging: false
 });
 
 // const modelDefiners = [
@@ -33,8 +34,8 @@ for (let file of files) {
   }
 }
 
-
-db.hashtag.location = db.hashtag.hasMany(db.location);
+// ! The new line to set relations
+// db.hashtag.location = db.hashtag.hasMany(db.location);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

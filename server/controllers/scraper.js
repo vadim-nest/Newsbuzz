@@ -22,7 +22,8 @@ async function mainPageLinks (websiteName, linkFilter, partialLink, location_id)
             url = partialLink + url;
           }
 
-          if (!links.includes(url)) {
+          // ! Limiting amount of links to 15 for now (for performance)
+          if (!links.includes(url) && (links.length < 15)) {
             links.push(url);
           }
         }
@@ -98,8 +99,13 @@ async function getHashTagsFromArticle (pageLink) {
   })
   // You have all of the variables at this point?
   // hashtags
-  console.log(hashtags);
-  return (hashtags);
+  // console.log(hashtags);
+  // We are filtering hashtags to store only the ones with the count of 3 or more
+  const filteredHashtags = hashtags.filter((hTag) => {
+    return hTag.count > 2;
+  });
+
+  return (filteredHashtags);
 }
 
 // Storing articles in the db!
@@ -111,7 +117,7 @@ async function storeArticle (link, first_p) {
     }
     await sequelize.models.article.create(article);
   } catch (error) {
-    console.log();
+    console.log(error);
   }
 }
 

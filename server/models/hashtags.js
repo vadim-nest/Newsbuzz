@@ -8,21 +8,11 @@ module.exports = (sequelize, DataTypes) => {
     // id
     // date
     // Might need to add article date column later, if want to roll back functionality
-    location_id: {
-			allowNull: false,
-			type: DataTypes.INTEGER,
-    },
+
     hashtag: {
 			allowNull: false,
+      unique: true,
 			type: DataTypes.STRING,
-    },
-    hashtag_count: {
-			allowNull: false,
-			type: DataTypes.INTEGER,
-    },
-    url_id: {
-			allowNull: false,
-			type: DataTypes.INTEGER,
     },
 	});
 };
