@@ -4,10 +4,21 @@ const router = express.Router();
 const { assignFilter } = require('./controllers/filters');
 const { filterBySite } = require('./controllers/createHashtags')
 const sequelize = require('./models');
+const { getHashtags } = require('./controllers/getHTagsFromDB');
+
 
 router.get('/', (req, res) => {
   res.send('Hello people');
 })
+
+// Okay, do it here for now, and the ask someone to help you to separate it into a different file (getHTagsFromDB.js)
+// router.get('/getHashtagsFromDB', (req, res) => {
+//   const allHashtags = getHashtags();
+//   console.log(allHashtags)
+//   // console.log(allHashtags);
+//   res.send('Hello hashtags');
+// })
+router.get('/getHashtagsFromDB', getHashtags)
 
 // ! It is a bit of a disaster right now. you have to call it about 3-4 times to actually populate the three tables correctly (articles, hashtags, occurances)
 router.get('/getHashtagsFromArticles', (req, res) => {
@@ -33,7 +44,9 @@ async function callingFilterBySite() {
     }
   }));
 
-
+  function text2png() {
+    fs.writeFileSync('out.png', text2png('Hello!', {color: 'blue'}));
+  }
 }
 
 module.exports = router;

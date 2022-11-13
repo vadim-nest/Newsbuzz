@@ -20,44 +20,69 @@ const INITIAL_VIEW_STATE = {
 // ];
 
 // DeckGL react component
+// function Hashtags({data, viewState}) {
+//   // data [{name: 'Colma (COLM)', address: '365 D Street, Colma CA 94014', coordinates: [-122.466233, 37.684638]}];
+
+
+//   const layer = new TextLayer({
+//     id: 'TextLayer',
+//     data: [
+//       {text: 'TEXT IN LIVERPOOL', coordinates: [-2.983333, 53.400002]}
+//     ],
+//     pickable: true,
+//     getPosition: d => d.coordinates,
+//     getText: d => d.name,
+//     getSize: 32,
+//     getAngle: 0,
+//     getTextAnchor: 'middle',
+//     getAlignmentBaseline: 'center'
+//   });
+
+//   // We just center on Liverpool for now
+//   return (
+//     <DeckGL
+//       initialViewState={INITIAL_VIEW_STATE}
+//       height='100%'
+//       width='100%'
+//       controller={true}
+//       layers={layer} // layers here!
+//     >
+//       <Mapbox />
+//     </DeckGL>
+//   )
+
+//   // return <DeckGL viewState={INITIAL_VIEW_STATE}
+//   //   layers={[layer]}
+//   //   getTooltip={({object}) => object && `${object.name}\n${object.address}`}>
+//   //     <Mapbox />
+//   //   </DeckGL>;
+
+// }
+
 function Hashtags({data, viewState}) {
-  // data [{name: 'Colma (COLM)', address: '365 D Street, Colma CA 94014', coordinates: [-122.466233, 37.684638]}];
+   data =[
+     {name: 'Colma (COLM)', address: '365 D Street, Colma CA 94014', coordinates: [-122.466233, 37.684638]},
+   ];
 
 
   const layer = new TextLayer({
-    id: 'TextLayer',
-    data: [
-      {text: '#San Francisco', coordinates: [-2.983333, 53.400002]}
-    ],
+    id: 'text-layer',
+    data,
     pickable: true,
     getPosition: d => d.coordinates,
     getText: d => d.name,
     getSize: 32,
     getAngle: 0,
     getTextAnchor: 'middle',
-    getAlignmentBaseline: 'center'
+    getAlignmentBaseline: 'center',
+    parameters: {depthTest: false}
   });
 
-  // We just center on Liverpool for now
-  // return (
-  //   <DeckGL
-  //     initialViewState={INITIAL_VIEW_STATE}
-  //     height='100%'
-  //     width='100%'
-  //     controller={true}
-  //     layers={layer} // layers here!
-  //   >
-  //     <Mapbox />
-  //   </DeckGL>
-  // )
-
-  return <DeckGL viewState={INITIAL_VIEW_STATE}
+  return <DeckGL viewState={viewState}
     layers={[layer]}
-    getTooltip={({object}) => object && `${object.name}\n${object.address}`}>
-      <Mapbox />
+    getTooltip={({object}) => object && `${object.name}\n${object.address}`} >
+      {/* <Mapbox /> */}
     </DeckGL>;
-
 }
 
 export default Hashtags;
-

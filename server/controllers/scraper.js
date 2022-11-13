@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const { getArticles, addArticle  } = require('./articles.js');
+const { getArticles, addArticle  } = require('./getHTagsFromDB.js');
 const sequelize = require('../models');
 
 async function mainPageLinks (websiteName, linkFilter, partialLink, location_id, toExclude) {

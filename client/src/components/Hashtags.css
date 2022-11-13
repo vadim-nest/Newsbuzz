@@ -1,0 +1,31 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+/*
+.deck-tooltip {
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 6px !important;
+  margin: 8px;
+  max-width: 300px;
+  font-size: 10px;
+}
+#control-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  padding: 10px;
+  font-size: 11px;
+  line-height: 1.5;
+  z-index: 1;
+  font-family: Helvetica, Arial, sans-serif;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+}
+label {
+  display: inline-block;
+  width: 50px;
+} */

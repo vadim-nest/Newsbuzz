@@ -1,3 +1,5 @@
+// Tried working with Google Maps first, but then discovered mapbox
+
 import './Map.css';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import env from "react-dotenv";
@@ -14,7 +16,7 @@ function Map() {
     styles: googleMapStyles,
   }
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBZkcBfWof9I7rL_l3dgqTU5oe7PLYfklg"
+    googleMapsApiKey: "AIzaSyAzZIbvlMqq0PxUBOh8oQoUGAJL9Z2F50o"
   });
 
   // console.log(env.PUBLIC_GOOGLE_MAPS_API_KEY);
@@ -35,7 +37,8 @@ function Map() {
     >
     <Marker position={{lat: 53.400002, lng: -2.983333}} />
     {/* <p>Hello</p> */}
-  </GoogleMap>;
+  </GoogleMap>
+
   </>
   )
 }

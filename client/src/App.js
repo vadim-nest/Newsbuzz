@@ -3,14 +3,16 @@ import logo from './logo.svg';
 import './App.css';
 import Hashtags from './components/Hashtags';
 import Mapbox from './components/Mapbox';
+// import Map from './components/Map';
 
 function App() {
 
   return (
     <>
-      {/* <Mapbox /> */}
+      {/* <Map /> */}
+      <Mapbox />
 
-      <Hashtags />
+      {/* <Hashtags /> */}
     </>
   );
 }
