@@ -1,27 +1,27 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Mapbox.css';
-import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-// import Hashtags from './Hashtags'
-// import {MapboxOverlay, MapboxOverlayProps} from '@deck.gl/mapbox/typed';
+import handleData from '../services/handleData.js';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoidmFkaW0tbmVzdCIsImEiOiJjbGFlMzJ0YWEwcHU5M3VtaGpxZzl0d2czIn0.sHidpt9tFsMRnr8uYbfvyA';
-console.log(window.env.REACT_APP_API_KEY_MAPBOX);
-// const data = [
-//   {
-//     "location": "Manhattan",
-//     "city": "Brooklyn",
-//     "state": "New York",
-//     "coordinates": [53.400002, -2.983333]
-//   }
-// ];
+mapboxgl.accessToken = window.env.REACT_APP_API_KEY_MAPBOX;
+
+
+(async () => {
+  console.log('Ok');
+  let processedData = await processData();
+  // ! YOU ARE HERE!!! ////////////////////////
+  // ! At this point you have an array of objects including all of the fetched data, by location
+  console.log(processedData);
+})();
 
 function Mapbox() {
   const mapContainer = useRef(null);
   const map = useRef(null);
+  // Default coordinated of the map
   const [lng, setLng] = useState(-2.983333);
   const [lat, setLat] = useState(53.400002);
+  // Default zoom
   const [zoom, setZoom] = useState(9);
 
   useEffect(() => {
@@ -65,6 +65,10 @@ function Mapbox() {
       {/* <Hashtags /> */}
     </div>
   );
+}
+
+async function processData() {
+  return await handleData();
 }
 
 export default Mapbox;

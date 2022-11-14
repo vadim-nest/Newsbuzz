@@ -4,8 +4,7 @@ const router = express.Router();
 const { assignFilter } = require('./controllers/filters');
 const { filterBySite } = require('./controllers/createHashtags')
 const sequelize = require('./models');
-const { getLocations, getOccurrences } = require('./controllers/getHTagsFromDB');
-
+const { getLocations, getOccurrences, getHashtags, getArticles } = require('./controllers/getHTagsFromDB');
 
 router.get('/', (req, res) => {
   res.send('Hello people');
@@ -20,13 +19,28 @@ router.get('/', (req, res) => {
 // })
 router.get('/getLocations', getLocations);
 router.get('/getOccurrences/location_id/:location_id', (req, res) => {
-  // console.log('req.parsms')
-  // console.log(req.params);
-  // const theLocationId = req.params;
   req.locationId = req.params;
   getOccurrences(req, res);
+
 });
 
+// Need to insert all of the hashtag ids required in the following format:
+// http://localhost:3000/getHashtags/hashtags/:149-474-757-956-1112-2
+router.get('/getHashtags/hashtags/:hashtags', (req, res) => {
+  req.hashtags = req.params;
+  getHashtags(req, res);
+});
+
+router.get('/getArticles/articles/:articles', (req, res) => {
+  req.articles = req.params;
+  getArticles(req, res);
+});
+
+// Need to implement at some point
+// router.get('/getSources', (req, res) => {
+// });
+
+// Getting all of the hashtags from the articles
 // ! It is a bit of a disaster right now. you have to call it about 3-4 times to actually populate the three tables correctly (articles, hashtags, occurances)
 router.get('/getHashtagsFromArticles', (req, res) => {
   callingFilterBySite();
@@ -34,7 +48,6 @@ router.get('/getHashtagsFromArticles', (req, res) => {
 })
 
 async function callingFilterBySite() {
-
   const sources = await sequelize.models.source.findAll();
 
   const filters = sources.map(el => {
@@ -51,9 +64,6 @@ async function callingFilterBySite() {
     }
   }));
 
-  function text2png() {
-    fs.writeFileSync('out.png', text2png('Hello!', {color: 'blue'}));
-  }
 }
 
 module.exports = router;

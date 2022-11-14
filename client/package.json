@@ -30,7 +30,7 @@
     "webpack": "^4.46.0"
   },
   "scripts": {
-    "start": "react-dotenv && react-scripts start",
+    "start": "set PORT=4200 && react-dotenv && react-scripts start",
     "build": "react-dotenv && react-scripts build",
     "serve": "react-dotenv && serve build",
     "test": "react-scripts test",

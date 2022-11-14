@@ -4,10 +4,14 @@ const express = require("express");
 const router = require("./router");
 const sequelize = require('./models/index')
 
-// const cors = require("cors");
-// const { filterBySite } = require('./controllers/filterByWebsite');
+const cors = require('cors');
+const corsConfig = {
+  origin: ['http://localhost:3000', 'http://localhost:4200'], // This is my config - maybe change 4200 and 3000 to the right ones for you
+  credentials: true,
+}
 
 const app = express();
+app.use(cors(corsConfig));
 
 app.use(express.json());
 app.use(router);

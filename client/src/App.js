@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Hashtags from './components/Hashtags';
+// import Hashtags from './components/Hashtags';
 import Mapbox from './components/Mapbox';
 // import Map from './components/Map';
 
