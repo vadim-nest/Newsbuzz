@@ -9,10 +9,7 @@ function App() {
 
   return (
     <>
-      {/* <Map /> */}
       <Mapbox />
-
-      {/* <Hashtags /> */}
     </>
   );
 }

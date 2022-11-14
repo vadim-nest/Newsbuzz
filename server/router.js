@@ -4,7 +4,7 @@ const router = express.Router();
 const { assignFilter } = require('./controllers/filters');
 const { filterBySite } = require('./controllers/createHashtags')
 const sequelize = require('./models');
-const { getHashtags } = require('./controllers/getHTagsFromDB');
+const { getLocations } = require('./controllers/getHTagsFromDB');
 
 
 router.get('/', (req, res) => {
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 //   // console.log(allHashtags);
 //   res.send('Hello hashtags');
 // })
-router.get('/getHashtagsFromDB', getHashtags)
+router.get('/getLocations', getLocations)
 
 // ! It is a bit of a disaster right now. you have to call it about 3-4 times to actually populate the three tables correctly (articles, hashtags, occurances)
 router.get('/getHashtagsFromArticles', (req, res) => {

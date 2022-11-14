@@ -36,6 +36,16 @@ for (let file of files) {
 
 // ! The new line to set relations
 // db.hashtag.location = db.hashtag.hasMany(db.location);
+// console.log(db.location);
+// todo Don't do the location or source just now, as you can't delete those
+// todo Hashtags - one to many - Occurances
+// ! Seems too complicated, as you are already populating the tables with ids (silly, I know)
+// All done in the next few lines, only to change foreighKey, as, maybe add something else inside there
+// db.hashtag.hasMany(db.occurance, { as: "comments" });
+// db.occurance.belongsTo(db.hashtag, {
+//   foreignKey: "tutorialId",
+//   as: "tutorial",
+// });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

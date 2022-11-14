@@ -6,13 +6,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 // import Hashtags from './Hashtags'
 // import {MapboxOverlay, MapboxOverlayProps} from '@deck.gl/mapbox/typed';
 
-// ! //////////////////////
-
-
-// ! //////////////////////
-
 mapboxgl.accessToken = 'pk.eyJ1IjoidmFkaW0tbmVzdCIsImEiOiJjbGFlMzJ0YWEwcHU5M3VtaGpxZzl0d2czIn0.sHidpt9tFsMRnr8uYbfvyA';
-
+console.log(window.env.REACT_APP_API_KEY_MAPBOX);
 // const data = [
 //   {
 //     "location": "Manhattan",
