@@ -19,23 +19,161 @@
   cursor: pointer;
 }
 
+h1 {
+  text-shadow: 0 0 20px;
+}
+
 .mapboxgl-popup {
-  width: 200px;
-  background-color: grey;
+  /* z-index: 0; */
+  /* width: 400px;
+  height: 400px; */
+  /* background-color: grey; */
+  /* background-color: #222F2B; */
+  /* opacity: 0; */
+    /* border-radius: 50px; */
+  background: rgba(0,0,0,0.0);
+  width: 400px;
+}
+
+.mapboxgl-popup-anchor-bottom {
+  width: 400px !important;
 }
 
 .mapboxgl-popup-content {
+  /* background: black; */
+  background: rgba(0,0,0,0.0) !important;
+  /* z-index: 0; */
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  border-radius: 50px;
+  /* border-radius: 50px 50px 50px 50px !important; */
   /* background-color: black; */
+  overflow: auto;
+  /* height: 300px; */
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 400px;
+  height: 400px;
+  margin: 0px;
+  padding: 0px;
 }
 
-#theMarker {
+.mapboxgl-popup-content h3 {
+  background-color: #f2f2f2;
+  margin: 0px;
+}
+
+/* .mapboxgl-popup {
+  width: 400px;
+  height: 400px;
+  display: none;
+} */
+
+.theMarker {
+  /* z-index: 2; */
   color: red;
   /* font-size: 10px; */
 }
 
-#theMarker:hover {
+.theMarker:hover {
   color: blue;
 }
+
+.articles {
+  /* background-color: blue; */
+
+}
+
+ul {
+  list-style-type: none;
+  /* padding: 0px; */
+  margin: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #f2f2f2;
+  color: black;
+  text-align: left;
+  font-size: 14px;
+
+}
+
+li p {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+a {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+a:link {
+  color: #555;
+}
+
+/* visited link */
+a:visited {
+  color: #555;
+}
+
+/* mouse over link */
+a:hover {
+  color: #555;
+}
+
+/* selected link */
+a:active {
+  color: #555;
+}
+
+h3 {
+  padding-top: 25px;
+  padding-bottom: 20px;
+  font-size: 24px;
+  text-align: left;
+  padding-left: 30px;
+  font-weight: bolder;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 300px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  opacity: 0.5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  opacity: 0.5;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  opacity: 0.5;
+
+}
+
+/* .glow {
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+} */

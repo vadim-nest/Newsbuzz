@@ -37,7 +37,7 @@ async function mainPageLinks (websiteName, linkFilter, partialLink, location_id,
 
 // Working, getting hashtags from an article from The Guardian
 // Function to get the text from the page (Guardian)
-async function getHashTagsFromArticle (pageLink) {
+async function getHashTagsFromArticle (pageLink, filter) {
   console.log('getHashTagsFromArticle')
   console.log(pageLink);
 
@@ -64,7 +64,12 @@ async function getHashTagsFromArticle (pageLink) {
         if (matches !== null) {
           matches.forEach(el => {
             let temp = el.trim()
-            allArrs.push(temp);
+            console.log(temp);
+            let filteredMatch = hashtagsFiltring(temp, pageLink, filter);
+            console.log(filteredMatch);
+            if (filteredMatch !== null) {
+              allArrs.push(filteredMatch);
+            }
           })
         }
       })
@@ -75,12 +80,9 @@ async function getHashTagsFromArticle (pageLink) {
     return a.toLowerCase().localeCompare(b.toLowerCase());
   });
 
-  // 2. Store a hashtag object in the 'hashtags' array
-  // 2.1 Check by key if already includes, then just add + 1
-  //
+
   // The code below only works with a sorted array
 
-  // !!! Don't delete the count. You need to store it later in the realtions table maybe? not sure. (when returning the hashtags, return the count into the raltions table)
   allArrs.forEach(async el => {
 
     if (hashtags[hashtags.length - 1]
@@ -119,6 +121,48 @@ async function storeArticle (link, first_p) {
   } catch (error) {
     console.log(error);
   }
+}
+
+function hashtagsFiltring(match, pageLink, filter) {
+  console.log('*******************************');
+  console.log('*******************************');
+  console.log('*******************************');
+  console.log('*******************************');
+  console.log('*******************************');
+  console.log(pageLink);
+  console.log(filter);
+  console.log('*******************************');
+  console.log('*******************************');
+  console.log('*******************************');
+  console.log('*******************************');
+  console.log('*******************************');
+
+  if (match === ('UK' || 'England' || 'Britain' || 'people' || 'residents' || 'street' || 'because' || 'family')) return null;
+
+  // Filter by location
+  if (filter[3] === 2) {
+    if (match === ('Edinburgh' || 'Scotland')) return null;
+  }
+
+  if (filter[3] === 3) {
+    if (match === ('Liverpool')) return null;
+  }
+
+  // Filter by newspaper
+  if (filter[0] === 'https://www.bbc.co.uk/news') {
+    if (match === ('BBC' || 'follow' || 'BBC North West' || 'Facebook' || 'Twitter' || 'Instagram' || 'northwest' || 'newsonline')) return null;
+  }
+
+  if (filter[0] === 'https://www.theguardian.com/uk') {
+    if (match === ('Guardian')) return null;
+  }
+
+  // if (filter[0] === 'https://www.liverpoolecho.co.uk/news/liverpool-news/') {
+  //   if (match === ('Liverpool')) return null;
+  // }
+
+  return match;
+
 }
 
 // async function findArticleId (link) {

@@ -1,7 +1,7 @@
 const { mainPageLinks, getHashTagsFromArticle } = require('./scraper');
 const sequelize = require('../models');
 
-async function  filterBySite (filter) {
+async function filterBySite (filter) {
   const linksAndLocation_id = await mainPageLinks(...filter);
   const links = linksAndLocation_id[0];
   const location_id = linksAndLocation_id[1];
@@ -15,7 +15,7 @@ async function  filterBySite (filter) {
   await Promise.all(links.map(async (link, index) => {
     // ! Maybe here I can populate the array??
     // index is limiting links to 10 (just for the tests)
-    let theLinkHashtags = await getHashTagsFromArticle(link);
+    let theLinkHashtags = await getHashTagsFromArticle(link, filter);
     allHashtags.push(...theLinkHashtags);
 
     if (theLinkHashtags.length > 0) {
