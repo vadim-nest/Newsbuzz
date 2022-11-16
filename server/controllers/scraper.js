@@ -22,7 +22,20 @@ async function mainPageLinks (websiteName, linkFilter, partialLink, location_id,
             url = partialLink + url;
           }
 
+          // console.log('**********************************');
+          // console.log('**********************************');
+          // console.log('**********************************');
+          // console.log('**********************************');
+          // console.log('**********************************');
+          // console.log(partialLink);
+          // console.log('**********************************');
+          // console.log('**********************************');
+          // console.log('**********************************');
+          // console.log('**********************************');
+          // console.log('**********************************');
+
           // ! Limiting amount of links to 15 for now (for performance)
+          // Well, I probably need the first 15 links anyway, as they will be selected / more discussed
           if (!links.includes(url) && (links.length < 15)) {
             links.push(url);
           }
@@ -30,7 +43,17 @@ async function mainPageLinks (websiteName, linkFilter, partialLink, location_id,
       })
       .toArray();
 	}).catch(err => console.log(err));
-
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log(links);
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
   return [links, location_id];
 }
 
@@ -124,18 +147,6 @@ async function storeArticle (link, first_p) {
 }
 
 function hashtagsFiltring(match, pageLink, filter) {
-  console.log('*******************************');
-  console.log('*******************************');
-  console.log('*******************************');
-  console.log('*******************************');
-  console.log('*******************************');
-  console.log(pageLink);
-  console.log(filter);
-  console.log('*******************************');
-  console.log('*******************************');
-  console.log('*******************************');
-  console.log('*******************************');
-  console.log('*******************************');
 
   if (match === ('UK' || 'England' || 'Britain' || 'people' || 'residents' || 'street' || 'because' || 'family')) return null;
 

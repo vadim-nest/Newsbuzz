@@ -18,10 +18,10 @@ router.get('/', (req, res) => {
 //   res.send('Hello hashtags');
 // })
 router.get('/getLocations', getLocations);
+
 router.get('/getOccurrences/location_id/:location_id', (req, res) => {
   req.locationId = req.params;
   getOccurrences(req, res);
-
 });
 
 // Need to insert all of the hashtag ids required in the following format:
@@ -54,12 +54,25 @@ async function callingFilterBySite() {
     return assignFilter(el.name, el.main_page_url, el.location_id);
   })
 
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log(filters);
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
+  // console.log('**********************************');
   // console.log(filters);
 
   await Promise.all(Object.values(filters).map((eachFilter, index) => {
     // filter to test individual websites
     // if (eachFilter !== undefined && eachFilter[0] === 'https://www.liverpoolecho.co.uk/news/liverpool-news/') {
-    if (eachFilter !== undefined) {
+    console.log(eachFilter);
+    if (eachFilter !== undefined && eachFilter[0] === 'https://www.expressandstar.com/news/local-hubs/birmingham/') {
+      console.log(eachFilter);
       filterBySite(eachFilter);
     }
   }));

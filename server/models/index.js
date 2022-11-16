@@ -34,6 +34,29 @@ for (let file of files) {
   }
 }
 
+// ! ADD LOCATION
+// ! Don't delete just now
+// ? Function to add a new location to the table (uncomment to run)
+// setTimeout(() => {
+//   sequelize.models.location.create({
+//     location_name: 'Birmingham',
+//     latitude: '52.489471',
+//     longitude: '-1.898575'
+//   })
+// }, 500);
+
+// ! ADD SOURCE
+// ! Don't delete just now
+// ? Function to add a new source to the table (uncomment to run)
+// setTimeout(() => {
+//   // sequelize.models.location
+//   sequelize.models.source.create({
+//     name: 'Express & Star',
+//     main_page_url: 'https://www.expressandstar.com/news/local-hubs/birmingham/',
+//     location_id: 7
+//   })
+// }, 500);
+
 // ! The new line to set relations
 // db.hashtag.location = db.hashtag.hasMany(db.location);
 // console.log(db.location);
@@ -54,24 +77,5 @@ db.Sequelize = Sequelize;
 module.exports = sequelize;
 
 
-// ! Don't delete just now
-// ? Function to add a new location to the table
-// setTimeout(() => {
-//   sequelize.location.create({
-//     location_name: 'global',
-//     latitude: '000',
-//     longitude: '000'
-//   })
 
-// }, 500);
 
-// ! Don't delete just now
-// ? Function to add a new source to the table
-// setTimeout(() => {
-//   sequelize.source.create({
-//     name: 'hehehe News',
-//     main_page_url: 'hsascsfattps://www.edinburghnews.scotsman.com/',
-//     location_id: 2
-//   })
-
-// }, 500);

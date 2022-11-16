@@ -23,30 +23,8 @@ const getOccurrences = async (req, res) => {
     }
   });
 
-  let theFirstElement59 = occurrences.filter(e => e.hashtag_id === 59);
-  console.log(theFirstElement59);
-
-  // Sum counts for all of the hashtag_ids
-  let inidividualHashtags = [];
-  const allHTagIds = occurrences.map((element) => {
-    let inArray = inidividualHashtags.filter(e => e.hashtag_id === element.hashtag_id);
-
-    if (inArray.length === 0) {
-      inidividualHashtags.push(element);
-    } else {
-      // Select the right object inside the array
-      inArray[0].hashtag_count = inArray[0].hashtag_count + element.hashtag_count;
-    }
-  })
-
-  // inidividualHashtags - Every hashtag with total count through all of the articles
-  inidividualHashtags.sort(function(a, b){return b.hashtag_count - a.hashtag_count})
-
-  // Limit to the amount needed (the second number)
-  let limit = inidividualHashtags.slice(0, 10);
-
-  // return the most mentioned hashtags
-  res.send(limit);
+  occurrences.sort(function(a, b){return a.hashtag_id - b.hashtag_id})
+  res.send(occurrences);
 };
 
 const getHashtags = async (req, res) => {
