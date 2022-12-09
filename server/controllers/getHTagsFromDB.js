@@ -55,11 +55,4 @@ const getArticles = async (req, res) => {
   res.send(articlessFromDB);
 };
 
-// const addArticle = async (req, res) => {
-//   const article = req.body;
-//   await sequelize.articles.create(article);
-//   res.status = 201;
-//   res.send();
-// }
-
 module.exports = { getLocations, getOccurrences, getHashtags, getArticles };

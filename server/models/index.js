@@ -5,57 +5,20 @@ const path = require('path');
 
 const sequelize = new Sequelize('buzznews', 'postgres', '1234', {
   dialect: 'postgres',
-  logging: false
+  logging: false,
 });
-
-// const modelDefiners = [
-//   require('./articles'),
-//   require('./hashtags'), // ? One-to-many
-//   require('./locations'),
-//   // require('./relations'),
-//   require('./sources'),
-// ];
-
-// We define all models according to their files.
-// for (const modelDefiner of modelDefiners) {
-// 	modelDefiner(sequelize);
-//   const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-//   console.log(model);
-//   db[model.name] = model;
-// }
 
 const files = fs.readdirSync(__dirname);
 
 for (let file of files) {
   if (file !== 'index.js') {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    // console.log(model.name);
+    const model = require(path.join(__dirname, file))(
+      sequelize,
+      Sequelize.DataTypes
+    );
     db[model.name] = model;
   }
 }
-
-// ! ADD LOCATION
-// ! Don't delete just now
-// ? Function to add a new location to the table (uncomment to run)
-// setTimeout(() => {
-//   sequelize.models.location.create({
-//     location_name: 'Birmingham',
-//     latitude: '52.489471',
-//     longitude: '-1.898575'
-//   })
-// }, 500);
-
-// ! ADD SOURCE
-// ! Don't delete just now
-// ? Function to add a new source to the table (uncomment to run)
-// setTimeout(() => {
-//   // sequelize.models.location
-//   sequelize.models.source.create({
-//     name: 'Express & Star',
-//     main_page_url: 'https://www.expressandstar.com/news/local-hubs/birmingham/',
-//     location_id: 7
-//   })
-// }, 500);
 
 // ! The new line to set relations
 // db.hashtag.location = db.hashtag.hasMany(db.location);
@@ -75,7 +38,3 @@ db.Sequelize = Sequelize;
 
 // We export the sequelize connection instance to be used around our app.
 module.exports = sequelize;
-
-
-
-

@@ -18,9 +18,14 @@ const handleData = async () => {
     return await occurrence;
   }))
 
+  // Somewhere here maybe I need to filter the occurrances then?
+  // At least, they are kinda sorted by count
+  // console.log(occurrencesFromDB);
+  const occurrences = filterOccurrences(occurrencesFromDB);
+
   //////////////////////////////////////
   // Fetching hashtags
-  let occurrencesHTagsIds = occurrencesFromDB.map(element => {
+  let occurrencesHTagsIds = occurrences.map(element => {
     return element.map(el => {
       return el.hashtag_id;
     });
@@ -37,55 +42,78 @@ const handleData = async () => {
 
   //////////////////////////////////////
   // Fetching articles
-  let occurrencesArticlesIds = occurrencesFromDB.map(element => {
+  // ! Need to fix articles fetching now
+  let occurrencesArticlesIds = occurrences.map(element => {
     return element.map(el => {
-      return el.url_id;
+      let urlIds = el.url_id;
+      return urlIds;
     });
   })
 
-  let urlsIdsStrArr = occurrencesArticlesIds.map(element => {
-    return element.join('-');
+  // console.log(occurrencesArticlesIds);
+  let allAtriclesToFetch = [];
+  occurrencesArticlesIds.forEach(element => {
+    element.forEach(ids => {
+      // console.log(ids);
+      ids.forEach(id => {
+        if (!allAtriclesToFetch.includes(id)) {
+          allAtriclesToFetch.push(id);
+        }
+      })
+    })
   })
 
-  let articlesFromDB = await Promise.all(urlsIdsStrArr.map(async id => {
-    const article = await handleArticles(id);
-    return await article;
-  }))
-
-  // At this point I have all of the data (apart from the sources table, which I didn't set up in the server)
-  console.log(locations);
-  console.log(occurrencesFromDB);
-  console.log(hashtagsFromDB);
-  console.log(articlesFromDB);
+  let allArticlesStr = allAtriclesToFetch.join('-');
+  let articlesFromDB = await handleArticles(allArticlesStr)
 
   // Let's return an array of objects for every location (tie the related things in one object)
-  let finalArr = locations.map((element, index) => {
-    let objArr = [];
-    // objArr.push(element);
-    objArr.push({location: element,
-                 occurrences: occurrencesFromDB[index],
-                 hashtags: hashtagsFromDB[index],
-                 urls: articlesFromDB[index],});
-    return objArr;
-  });
+  // let finalArr = locations.map((element, index) => {
+  //   let objArr = [];
+  //   // objArr.push(element);
+  //   objArr.push({location: element,
+  //                occurrences: occurrences[index],
+  //                hashtags: hashtagsFromDB[index],
+  //                urls: articlesFromDB});
+  //   return objArr;
+  // });
 
-  return (finalArr);
+  locations.forEach((element, index) => {
+    // Sort occurrences by hashtag_count
+    let tempOccurr = occurrencesFromDB[index];
+    tempOccurr.sort(function(a, b){
+      return b.hashtag_count - a.hashtag_count;
+    })
+    element.occurrences = occurrencesFromDB[index];
+  })
+
+  // console.log(hashtagsFromDB);
+  let uniqHashtags = [];
+  hashtagsFromDB.forEach((element) => {
+    // console.log(element);
+    if (element) {
+      element.forEach(hTag => {
+        if(!uniqHashtags.includes(hTag)) {
+          uniqHashtags.push(hTag);
+        }
+      })
+    }
+  })
+
+  // At this point I have all of the data (apart from the sources table, which I didn't set up in the server)
+  // console.log(locations);
+  // console.log(uniqHashtags);
+  // console.log(articlesFromDB);
+
+  return ([locations, uniqHashtags, articlesFromDB]);
 }
 
-const handleLocations = async (locationId) => {
-  // console.log(locationId);
-
+const handleLocations = async () => {
   const locations = await getLocations();
-
-  // console.log(occurrence);
   return locations;
 }
 
 const handleOccurrences = async (locationId) => {
-  // console.log(locationId);
-
   const occurrence = await getOccurrences(locationId);
-  // console.log(occurrence);
   return occurrence;
 }
 
@@ -103,4 +131,50 @@ const handleArticles = async (articlesIds) => {
   }
 }
 
+function filterOccurrences(occurrencesFromDB) {
+  occurrencesFromDB.forEach(element => {
+    element.forEach(occurrence => {
+      if (occurrence.url_id) {
+        occurrence.url_id = [occurrence.url_id];
+      }
+    })
+  })
+  let occurrByLocation = [];
+  occurrencesFromDB.forEach(element => {
+    let countedHashtags = [];
+
+    element.forEach(occurrence => {
+      if (countedHashtags.length > 0 && countedHashtags[countedHashtags.length - 1].hashtag_id === occurrence.hashtag_id) {
+        countedHashtags[countedHashtags.length - 1].hashtag_count = countedHashtags[countedHashtags.length - 1].hashtag_count + occurrence.hashtag_count;
+
+        // if url ids are different
+        if (!countedHashtags[countedHashtags.length - 1].url_id.includes(occurrence.url_id[0])) {
+          countedHashtags[countedHashtags.length - 1].url_id.push(...occurrence.url_id);
+        }
+      } else {
+        countedHashtags.push(occurrence);
+      }
+    })
+
+    // countedHashtags.sort(function(a, b){
+    //   return b.hashtag_count - a.hashtag_count;
+    // })
+    occurrByLocation.push(countedHashtags);
+  })
+
+  // ! Limit for the amount of hashtags per location
+  // console.log(occurrByLocation);
+  // const limit = [];
+  // occurrByLocation.forEach(element => {
+  //   limit.push(element.slice(0, 10));
+  // })
+  // occurrByLocation.slice(0, 10);
+
+  // console.log(limit);
+  return occurrByLocation;
+}
+
 export default handleData;
+
+// ? Wasn't working, not sure why..
+// module.exports = { handleData };

@@ -13,7 +13,6 @@ async function mainPageLinks (websiteName, linkFilter, partialLink, location_id,
       $('div').each((i, article) => {
         const $article = $(article);
         let url = $article.find('a').attr('href');
-        // console.log(url);
 
         if (url && url.includes(linkFilter) && url !== 'url' && !url.includes(toExclude)) {
 
@@ -21,18 +20,6 @@ async function mainPageLinks (websiteName, linkFilter, partialLink, location_id,
           if (partialLink && !url.includes('http') && partialLink !== undefined) {
             url = partialLink + url;
           }
-
-          // console.log('**********************************');
-          // console.log('**********************************');
-          // console.log('**********************************');
-          // console.log('**********************************');
-          // console.log('**********************************');
-          // console.log(partialLink);
-          // console.log('**********************************');
-          // console.log('**********************************');
-          // console.log('**********************************');
-          // console.log('**********************************');
-          // console.log('**********************************');
 
           // ! Limiting amount of links to 15 for now (for performance)
           // Well, I probably need the first 15 links anyway, as they will be selected / more discussed
@@ -43,17 +30,6 @@ async function mainPageLinks (websiteName, linkFilter, partialLink, location_id,
       })
       .toArray();
 	}).catch(err => console.log(err));
-  // console.log('**********************************');
-  // console.log('**********************************');
-  // console.log('**********************************');
-  // console.log('**********************************');
-  // console.log('**********************************');
-  // console.log(links);
-  // console.log('**********************************');
-  // console.log('**********************************');
-  // console.log('**********************************');
-  // console.log('**********************************');
-  // console.log('**********************************');
   return [links, location_id];
 }
 
@@ -61,9 +37,6 @@ async function mainPageLinks (websiteName, linkFilter, partialLink, location_id,
 // Working, getting hashtags from an article from The Guardian
 // Function to get the text from the page (Guardian)
 async function getHashTagsFromArticle (pageLink, filter) {
-  console.log('getHashTagsFromArticle')
-  console.log(pageLink);
-
   let hashtags = [];
   let allArrs = [];
 
@@ -79,7 +52,6 @@ async function getHashTagsFromArticle (pageLink, filter) {
           storeArticle(pageLink, title);
         }
 
-
         // regex to get hashtags
         let matches = title.match(/(([A-Z]\w*\s*){2,})|(\w{6,})/g);
 
@@ -87,9 +59,7 @@ async function getHashTagsFromArticle (pageLink, filter) {
         if (matches !== null) {
           matches.forEach(el => {
             let temp = el.trim()
-            console.log(temp);
             let filteredMatch = hashtagsFiltring(temp, pageLink, filter);
-            console.log(filteredMatch);
             if (filteredMatch !== null) {
               allArrs.push(filteredMatch);
             }
@@ -175,17 +145,5 @@ function hashtagsFiltring(match, pageLink, filter) {
   return match;
 
 }
-
-// async function findArticleId (link) {
-  // const project = await sequelize.models.article.findOne({ where: { url: link } });
-  // if (project === null) {
-  //   console.log('Not found!');
-  // } else {
-  //   // console.log(project instanceof sequelize.models.article); // true
-  //   // console.log('project.id, line 133:', project.id); // 'My Title'
-  //   return project.id;
-  // }
-// }
-
 
 module.exports = { mainPageLinks, getHashTagsFromArticle };
