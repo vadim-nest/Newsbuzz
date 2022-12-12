@@ -41,8 +41,15 @@ const getHashtags = async (hashtagsIds) => {
 
 const getArticles = async (articlesIds) => {
   try {
+    const articlesToRequest = JSON.stringify(articlesIds);
     // console.log(baseUrl + 'getOccurrences/location_id/:' + locationId);
-    const response = await fetch(baseUrl + 'getArticles/articles/:' + articlesIds);
+    const response = await fetch(baseUrl + 'getArticles', {
+      credentials: "include",
+      mode: "cors",
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: articlesToRequest
+  });
     // console.log(response.json());
     return await response.json();
   } catch (error) {

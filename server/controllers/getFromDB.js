@@ -30,7 +30,6 @@ const getOccurrences = async (req, res) => {
 const getHashtags = async (req, res) => {
   const hashtagsIdArr = req.body;
 
-
   let hashtagsFromDB = await Promise.all(hashtagsIdArr.map(async id => {
     const hTag = await sequelize.models.hashtag.findByPk(id);
     // console.log(hTag);
@@ -41,9 +40,7 @@ const getHashtags = async (req, res) => {
 };
 
 const getArticles = async (req, res) => {
-  const theArticlesIds = req.articles.articles.slice(1);
-  // Now I have an array of articles indexes:
-  const articlesIdArr = theArticlesIds.split('-');
+  const articlesIdArr = req.body;
 
   let articlesFromDB = await Promise.all(articlesIdArr.map(async id => {
     const article = await sequelize.models.article.findByPk(id);

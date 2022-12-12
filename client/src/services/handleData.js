@@ -52,20 +52,19 @@ const handleData = async () => {
   })
 
   // console.log(occurrencesArticlesIds);
-  let allAtriclesToFetch = [];
+  let allArticlesToFetch = [];
   occurrencesArticlesIds.forEach(element => {
     element.forEach(ids => {
       // console.log(ids);
       ids.forEach(id => {
-        if (!allAtriclesToFetch.includes(id)) {
-          allAtriclesToFetch.push(id);
+        if (!allArticlesToFetch.includes(id)) {
+          allArticlesToFetch.push(id);
         }
       })
     })
   })
-
-  let allArticlesStr = allAtriclesToFetch.join('-');
-  let articlesFromDB = await handleArticles(allArticlesStr)
+  console.log(allArticlesToFetch);
+  let articlesFromDB = await handleArticles(allArticlesToFetch)
 
   // Let's return an array of objects for every location (tie the related things in one object)
   // let finalArr = locations.map((element, index) => {

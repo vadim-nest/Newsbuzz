@@ -32,8 +32,7 @@ router.post('/getHashtags', (req, res) => {
 });
 
 // TODO: change this to parsing a JSON
-router.get('/getArticles/articles/:articles', (req, res) => {
-  req.articles = req.params;
+router.post('/getArticles', (req, res) => {
   getArticles(req, res);
 });
 
