@@ -6,7 +6,7 @@ const getLocations = async () => {
     // console.log(response.json());
     return await response.json();
   } catch (error) {
-    console.log('Error in requestData.js - getLocations (GET)', error)
+    console.log('Error in requestData.js - getLocations (GET)', error);
   }
 }
 
@@ -22,9 +22,16 @@ const getOccurrences = async (locationId) => {
 }
 
 const getHashtags = async (hashtagsIds) => {
+  const hashtagsToRequest = JSON.stringify(hashtagsIds);
   try {
     // console.log(baseUrl + 'getOccurrences/location_id/:' + locationId);
-    const response = await fetch(baseUrl + 'getHashtags/hashtags/:' + hashtagsIds);
+    const response = await fetch(baseUrl + 'getHashtags', {
+      credentials: "include",
+      mode: "cors",
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: hashtagsToRequest
+  });
     // console.log(response.json());
     return await response.json();
   } catch (error) {

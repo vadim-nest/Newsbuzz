@@ -28,9 +28,8 @@ const getOccurrences = async (req, res) => {
 };
 
 const getHashtags = async (req, res) => {
-  const theHashtagsIds = req.hashtags.hashtags.slice(1);
-  // Now I have an array of hashtags indexes:
-  const hashtagsIdArr = theHashtagsIds.split('-');
+  const hashtagsIdArr = req.body;
+
 
   let hashtagsFromDB = await Promise.all(hashtagsIdArr.map(async id => {
     const hTag = await sequelize.models.hashtag.findByPk(id);
@@ -46,13 +45,23 @@ const getArticles = async (req, res) => {
   // Now I have an array of articles indexes:
   const articlesIdArr = theArticlesIds.split('-');
 
-  let articlessFromDB = await Promise.all(articlesIdArr.map(async id => {
+  let articlesFromDB = await Promise.all(articlesIdArr.map(async id => {
     const article = await sequelize.models.article.findByPk(id);
     // console.log(hTag);
     return article;
   }))
 
-  res.send(articlessFromDB);
+  res.send(articlesFromDB);
 };
 
-module.exports = { getLocations, getOccurrences, getHashtags, getArticles };
+const getSources = async (req, res) => {
+  try {
+    const sources = await sequelize.models.source.findAll();
+    res.send(sources)
+  } catch (error) {
+    console.log(error);
+    res.status(501).json(error);
+  }
+};
+
+module.exports = { getLocations, getOccurrences, getHashtags, getArticles, getSources };

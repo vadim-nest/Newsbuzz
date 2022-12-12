@@ -42,7 +42,6 @@ async function filterBySite (filter) {
 
 module.exports = { filterBySite };
 
-
 // Storing hashtags in the db!
 async function storeHashtag (hashtagsArr) {
 

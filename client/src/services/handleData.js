@@ -25,18 +25,19 @@ const handleData = async () => {
 
   //////////////////////////////////////
   // Fetching hashtags
+  // TODO: you are fetching hashtags for every location. A lot of hashtag repetition
   let occurrencesHTagsIds = occurrences.map(element => {
     return element.map(el => {
       return el.hashtag_id;
     });
   })
-
-  let hTagsIdsStrArr = occurrencesHTagsIds.map(element => {
-    return element.join('-');
-  })
-
-  let hashtagsFromDB = await Promise.all(hTagsIdsStrArr.map(async id => {
-    const hashtag = await handleHashtags(id);
+  console.log(occurrencesHTagsIds);
+  // let hTagsIdsStrArr = occurrencesHTagsIds.map(element => {
+  //   return element.join('-');
+  // })
+  // console.log(hTagsIdsStrArr);
+  let hashtagsFromDB = await Promise.all(occurrencesHTagsIds.map(async idsArr => {
+    const hashtag = await handleHashtags(idsArr);
     return await hashtag;
   }))
 

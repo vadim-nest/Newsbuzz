@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 // const articles = require('./controllers/articles');
-const { assignFilter } = require('./controllers/filters');
-const { filterBySite } = require('./controllers/createHashtags');
-const sequelize = require('./models');
+const { assignFilter } = require('../controllers/filters');
+const { filterBySite } = require('../controllers/createHashtags');
+const sequelize = require('../models');
 const {
   getLocations,
   getOccurrences,
   getHashtags,
   getArticles,
-} = require('./controllers/getHTagsFromDB');
-const addLocation = require('./controllers/addLocation');
-const addSource = require('./controllers/addSource');
+  getSources
+} = require('../controllers/getFromDB');
+const addLocation = require('../controllers/addLocation');
+const addSource = require('../controllers/addSource');
 
 router.get('/', (req, res) => {
   res.send('Hello people');
@@ -19,26 +20,22 @@ router.get('/', (req, res) => {
 
 router.get('/getLocations', getLocations);
 
+router.get('/getSources', getSources);
+
 router.get('/getOccurrences/location_id/:location_id', (req, res) => {
   req.locationId = req.params;
   getOccurrences(req, res);
 });
 
-// Need to insert all of the hashtag ids required in the following format:
-// http://localhost:3000/getHashtags/hashtags/:149-474-757-956-1112-2
-router.get('/getHashtags/hashtags/:hashtags', (req, res) => {
-  req.hashtags = req.params;
+router.post('/getHashtags', (req, res) => {
   getHashtags(req, res);
 });
 
+// TODO: change this to parsing a JSON
 router.get('/getArticles/articles/:articles', (req, res) => {
   req.articles = req.params;
   getArticles(req, res);
 });
-
-// Need to implement at some point
-// router.get('/getSources', (req, res) => {
-// });
 
 // ! It is a bit of a disaster right now. you have to call it about 3-4 times to actually populate the three tables correctly (articles, hashtags, occurances)
 router.get('/getHashtagsFromArticles', (req, res) => {
