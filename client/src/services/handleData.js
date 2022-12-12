@@ -63,7 +63,6 @@ const handleData = async () => {
       })
     })
   })
-  console.log(allArticlesToFetch);
   let articlesFromDB = await handleArticles(allArticlesToFetch)
 
   // Let's return an array of objects for every location (tie the related things in one object)
