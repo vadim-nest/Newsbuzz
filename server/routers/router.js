@@ -2,17 +2,16 @@ const express = require('express');
 const router = express.Router();
 // const articles = require('./controllers/articles');
 const { assignFilter } = require('../utils/filters');
-const { filterBySite } = require('../utils/createHashtags');
+const { scrapeController } = require('../utils/scrapeController');
 const sequelize = require('../models');
 const {
   getLocations,
   getOccurrences,
   getHashtags,
   getArticles,
-  getSources
+  getSources,
 } = require('../controllers/getFromDB');
-const addLocation = require('../utils/addLocation');
-const addSource = require('../utils/addSource');
+const { addLocation, addSource } = require('../controllers/addToDB');
 
 router.get('/', (req, res) => {
   res.send('Hello people');
@@ -50,7 +49,7 @@ router.post('/addLocation', (req, res) => {
     console.log(error);
     res.send(400);
   }
-})
+});
 
 router.post('/addSource', (req, res) => {
   try {
@@ -60,7 +59,7 @@ router.post('/addSource', (req, res) => {
     console.log(error);
     res.send(400);
   }
-})
+});
 
 async function callingFilterBySite() {
   const sources = await sequelize.models.source.findAll();
@@ -74,7 +73,7 @@ async function callingFilterBySite() {
       // filter to test individual websites
       // if (eachFilter !== undefined && eachFilter[0] === 'https://www.liverpoolecho.co.uk/news/liverpool-news/') {
       if (eachFilter) {
-        filterBySite(eachFilter);
+        scrapeController(eachFilter);
       }
     })
   );

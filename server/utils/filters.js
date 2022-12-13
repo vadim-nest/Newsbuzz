@@ -1,4 +1,9 @@
-// Helper function for createHashtags.js
+// ! Filters description
+// 1. Main page link
+// 2. Filter (to get the right links from the Main page)
+// 3. Partial link. Some websites store links without the main part (like BBC), so we need to attach it in order to scrape later. Can be undefined.
+// ! 4. Passing the location_id further, to store in the hashtags table
+// 5. Filter to exclude
 
 const today = new Date();
 const day = String(today.getDate()).padStart(2, '0');
@@ -24,15 +29,8 @@ function assignFilter(name, mainLink, location_id) {
   // location Birmingham
   if (name === 'Birmingham Mail') return [mainLink, `/news/`, undefined, location_id, '#comments-wrapper'];
   if (name === 'Express & Star') return [mainLink, `/news/`, 'https://www.expressandstar.com/news', location_id, '#comments-wrapper'];
-  
+
   return undefined;
 };
 
 module.exports = { assignFilter };
-
-// ? Filters description
-// 1. Main page link
-// 2. Filter (to get the right links from the Main page)
-// 3. Partial link. Some websites store links without the main part (like BBC), so we need to attach it in order to scrape later. Can be undefined.
-// ! 4. Passing the location_id further, to store in the hashtags table
-// 5. Filter to exclude
