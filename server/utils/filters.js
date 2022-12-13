@@ -3,10 +3,8 @@
 const today = new Date();
 const day = String(today.getDate()).padStart(2, '0');
 const monthWordShort = today.toLocaleString('default', { month: 'short' }).toLowerCase();
-// const monthNum = today.toLocaleString('default', { month: '2-digit' });
 
 function assignFilter(name, mainLink, location_id) {
-  // console.log(name === 'The Guardian');
   // location: global
   if (name === 'The Guardian') return [mainLink, `${monthWordShort}/${day}`, undefined, location_id];
   if (name === 'BBC') return [mainLink, `/news/`, 'https://www.bbc.co.uk', location_id];
@@ -26,11 +24,7 @@ function assignFilter(name, mainLink, location_id) {
   // location Birmingham
   if (name === 'Birmingham Mail') return [mainLink, `/news/`, undefined, location_id, '#comments-wrapper'];
   if (name === 'Express & Star') return [mainLink, `/news/`, 'https://www.expressandstar.com/news', location_id, '#comments-wrapper'];
-
-
-
-
-
+  
   return undefined;
 };
 

@@ -11,15 +11,12 @@ const getLocations = async (req, res) => {
 };
 
 const getOccurrences = async (req, res) => {
-  // Get the location id
   const theLocationId = req.locationId.location_id.slice(1);
-
   const occurrences = await sequelize.models.occurrence.findAll({
     where: {
       location_id: theLocationId
     }
   });
-
   occurrences.sort(function(a, b){return a.hashtag_id - b.hashtag_id})
   res.send(occurrences);
 };
@@ -29,7 +26,6 @@ const getHashtags = async (req, res) => {
 
   let hashtagsFromDB = await Promise.all(hashtagsIdArr.map(async id => {
     const hTag = await sequelize.models.hashtag.findByPk(id);
-    // console.log(hTag);
     return hTag;
   }))
 
@@ -41,7 +37,6 @@ const getArticles = async (req, res) => {
 
   let articlesFromDB = await Promise.all(articlesIdArr.map(async id => {
     const article = await sequelize.models.article.findByPk(id);
-    // console.log(hTag);
     return article;
   }))
 

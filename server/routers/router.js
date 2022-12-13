@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 // const articles = require('./controllers/articles');
-const { assignFilter } = require('../controllers/filters');
-const { filterBySite } = require('../controllers/createHashtags');
+const { assignFilter } = require('../utils/filters');
+const { filterBySite } = require('../utils/createHashtags');
 const sequelize = require('../models');
 const {
   getLocations,
@@ -11,8 +11,8 @@ const {
   getArticles,
   getSources
 } = require('../controllers/getFromDB');
-const addLocation = require('../controllers/addLocation');
-const addSource = require('../controllers/addSource');
+const addLocation = require('../utils/addLocation');
+const addSource = require('../utils/addSource');
 
 router.get('/', (req, res) => {
   res.send('Hello people');
