@@ -73,7 +73,7 @@ async function callingFilterBySite() {
     Object.values(filters).map((eachFilter, index) => {
       // filter to test individual websites
       // if (eachFilter !== undefined && eachFilter[0] === 'https://www.liverpoolecho.co.uk/news/liverpool-news/') {
-      if (eachFilter !== undefined) {
+      if (eachFilter) {
         filterBySite(eachFilter);
       }
     })

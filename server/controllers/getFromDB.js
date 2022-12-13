@@ -1,6 +1,3 @@
-// !!! What is this file? Do I even need this?
-// ? I think, Ill need this structure later, when interacting with the db from front end
-const bodyParser = require('body-parser');
 const sequelize = require('../models/index');
 
 const getLocations = async (req, res) => {
@@ -17,7 +14,7 @@ const getOccurrences = async (req, res) => {
   // Get the location id
   const theLocationId = req.locationId.location_id.slice(1);
 
-  const occurrences = await sequelize.models.occurance.findAll({
+  const occurrences = await sequelize.models.occurrence.findAll({
     where: {
       location_id: theLocationId
     }

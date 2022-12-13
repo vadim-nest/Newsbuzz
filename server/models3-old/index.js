@@ -3,7 +3,7 @@ const db = {};
 const fs = require('fs');
 const path = require('path');
 
-const sequelize = new Sequelize('newsbuzz', 'postgres', '1234', {
+const sequelize = new Sequelize('buzznews', 'postgres', '1234', {
   dialect: 'postgres',
   logging: false,
 });
@@ -20,7 +20,6 @@ for (let file of files) {
   }
 }
 
-// TODO: occurrences - one-to-many
 // ! The new line to set relations
 // db.hashtag.location = db.hashtag.hasMany(db.location);
 // console.log(db.location);
@@ -33,33 +32,6 @@ for (let file of files) {
 //   foreignKey: "tutorialId",
 //   as: "tutorial",
 // });
-db.source.belongsTo(db.location, {
-  foreignKey: 'location_id',
-});
-db.location.hasMany(db.source, {
-  foreignKey: 'location_id',
-});
-
-db.occurrence.belongsTo(db.hashtag, {
-  foreignKey: 'hashtag_id',
-});
-db.hashtag.hasMany(db.occurrence, {
-  foreignKey: 'hashtag_id',
-});
-
-db.occurrence.belongsTo(db.location, {
-  foreignKey: 'location_id',
-});
-db.location.hasMany(db.occurrence, {
-  foreignKey: 'location_id',
-});
-
-db.occurrence.belongsTo(db.article, {
-  foreignKey: 'url_id',
-});
-db.article.hasMany(db.occurrence, {
-  foreignKey: 'url_id',
-});
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

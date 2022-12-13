@@ -75,7 +75,7 @@ async function storeOccurance (hashtagsArr, the_location_id, the_article_id) {
         hashtag_count: hTag.count,
         url_id: the_article_id,
       }
-      await sequelize.models.occurance.create(occurance);
+      await sequelize.models.occurrence.create(occurance);
     } catch (error) {
       console.log(error);
     }

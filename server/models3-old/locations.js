@@ -1,13 +1,17 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('source', {
-    name: {
+  return sequelize.define('location', {
+    // id
+    location_name: {
       allowNull: false,
       unique: true,
       type: DataTypes.STRING,
     },
-    main_page_url: {
+    latitude: {
       allowNull: false,
-      unique: true,
+      type: DataTypes.STRING,
+    },
+    longitude: {
+      allowNull: false,
       type: DataTypes.STRING,
     },
   });

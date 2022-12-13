@@ -10,5 +10,9 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       type: DataTypes.STRING,
     },
+    location_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
   });
 };
