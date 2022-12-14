@@ -39,4 +39,7 @@ Server is running in PORT:3000
 ```
 
 4. Now your server is ready and you can run the client:
-
+```bash
+cd ../client
+npm start
+```
