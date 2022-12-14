@@ -43,3 +43,5 @@ Server is running in PORT:3000
 cd ../client
 npm start
 ```
+
+### Enjoy!
