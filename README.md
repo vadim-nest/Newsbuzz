@@ -60,4 +60,4 @@ Alternatively, you can watch my video presentation:
 https://youtu.be/nDBfXSMiDnw
 
 ### Author
-Vadim Gnezdyshkin - [LinkedIn](https://www.linkedin.com/in/vadim-nest/) [GitHub](https://github.com/vadim-nest)
+Vadim Gnezdyshkin - [LinkedIn](https://www.linkedin.com/in/vadim-nest/) - [GitHub](https://github.com/vadim-nest)
