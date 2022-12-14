@@ -25,6 +25,7 @@ cd Newsbuzz
 3. Add the hashtags data from .csv files to the db
 ```bash
 cd server
+npm install
 npm start
 ```
 
@@ -41,7 +42,7 @@ Server is running in PORT:3000
 
 4. Now your server is ready. Open a new terminal and run the client:
 ```bash
-cd ../client
+cd client
 npm start
 ```
 
