@@ -106,7 +106,6 @@ async function populateSources() {
 };
 
 async function populateDB () {
-  await createDB();
   await populateArticles();
   await populateLocations();
   await populateHashtags();

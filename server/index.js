@@ -1,5 +1,5 @@
 require('dotenv').config();
-const PORT = process.env.port || 3000;
+const PORT = process.env.port || 3001;
 const express = require('express');
 const router = require('./routers/router');
 const { populateDB } = require('./populateDB/populateDB')
@@ -7,7 +7,7 @@ const { populateDB } = require('./populateDB/populateDB')
 const cors = require('cors');
 const { createDB } = require('./populateDB/setUpDB');
 const corsConfig = {
-  origin: ['http://localhost:3000', 'http://localhost:4200'],
+  origin: ['http://localhost:3000', 'http://localhost:3001'],
   credentials: true,
 };
 
