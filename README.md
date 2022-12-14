@@ -38,7 +38,7 @@ Populating the database:
 Server is running in PORT:3000
 ```
 
-4. Now your server is ready and you can run the client:
+4. Now your server is ready. Open a new terminal and run the client:
 ```bash
 cd ../client
 npm start
