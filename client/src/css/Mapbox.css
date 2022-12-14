@@ -3,14 +3,7 @@
   height: 100vh;
 }
 
-.mapboxgl-canvas-container {
-  /* Not working */
-  /* cursor: default; */
-}
-
 .marker {
-  /* background-image: url('—Pngtree—race vector text effects with_5553637.png'); */
-  /* content: "Reference "; */
   color: white;
   background-size: cover;
   width: 50px;
@@ -24,13 +17,6 @@ h1 {
 }
 
 .mapboxgl-popup {
-  /* z-index: 0; */
-  /* width: 400px;
-  height: 400px; */
-  /* background-color: grey; */
-  /* background-color: #222F2B; */
-  /* opacity: 0; */
-    /* border-radius: 50px; */
   background: rgba(0,0,0,0.0);
   width: 400px;
 }
@@ -40,49 +26,31 @@ h1 {
 }
 
 .mapboxgl-popup-content {
-  /* background: black; */
   background: rgba(0,0,0,0.0) !important;
-  /* z-index: 0; */
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  /* border-radius: 50px 50px 50px 50px !important; */
-  /* background-color: black; */
-  overflow: auto;
-  /* height: 300px; */
+  /* overflow: auto; */
   top: 0px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 400px;
-  height: 400px;
+  /* width: 400px;
+  height: 400px; */
   margin: 0px;
   padding: 0px;
 }
 
 .mapboxgl-popup-content h3 {
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
   margin: 0px;
 }
 
-/* .mapboxgl-popup {
-  width: 400px;
-  height: 400px;
-  display: none;
-} */
-
 .theMarker {
-  /* z-index: 2; */
   color: red;
-  /* font-size: 10px; */
 }
 
 .theMarker:hover {
   color: blue;
-}
-
-.articles {
-  /* background-color: blue; */
-
 }
 
 ul {
@@ -91,10 +59,14 @@ ul {
   margin: 0px;
   padding-left: 15px;
   padding-right: 15px;
-  background-color: #f2f2f2;
-  color: black;
+  /* background-color: #f2f2f2; */
+  color: white;
   text-align: left;
   font-size: 14px;
+  width: 30vw;
+  height: 30vh;
+  overflow: auto;
+
 
 }
 
@@ -161,19 +133,3 @@ h3 {
   opacity: 0.5;
 
 }
-
-/* .glow {
-  text-align: center;
-  -webkit-animation: glow 1s ease-in-out infinite alternate;
-  -moz-animation: glow 1s ease-in-out infinite alternate;
-  animation: glow 1s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-  }
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-  }
-} */

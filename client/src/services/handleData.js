@@ -1,13 +1,11 @@
 import { getLocations, getOccurrences, getHashtags, getArticles } from './requestData';
 
-// todo Create a separate function on top, for handling the requests chain (instead of having it all in the handleLocations() function)
+// TODO Create a separate function on top, for handling the requests chain (instead of having it all in the handleLocations() function)
 
 const handleData = async () => {
-  //////////////////////////////////////
   // Fetching locations
   const locations = await handleLocations();
 
-  //////////////////////////////////////
   // Fetching occurrences
   const locationsIdsArr = locations.map(location => {
     return location.id;
@@ -23,7 +21,6 @@ const handleData = async () => {
   // console.log(occurrencesFromDB);
   const occurrences = filterOccurrences(occurrencesFromDB);
 
-  //////////////////////////////////////
   // Fetching hashtags
   // TODO: you are fetching hashtags for every location. A lot of hashtag repetition
   let occurrencesHTagsIds = occurrences.map(element => {
@@ -41,7 +38,6 @@ const handleData = async () => {
     return await hashtag;
   }))
 
-  //////////////////////////////////////
   // Fetching articles
   // ! Need to fix articles fetching now
   let occurrencesArticlesIds = occurrences.map(element => {
@@ -51,11 +47,9 @@ const handleData = async () => {
     });
   })
 
-  // console.log(occurrencesArticlesIds);
   let allArticlesToFetch = [];
   occurrencesArticlesIds.forEach(element => {
     element.forEach(ids => {
-      // console.log(ids);
       ids.forEach(id => {
         if (!allArticlesToFetch.includes(id)) {
           allArticlesToFetch.push(id);
@@ -64,17 +58,6 @@ const handleData = async () => {
     })
   })
   let articlesFromDB = await handleArticles(allArticlesToFetch)
-
-  // Let's return an array of objects for every location (tie the related things in one object)
-  // let finalArr = locations.map((element, index) => {
-  //   let objArr = [];
-  //   // objArr.push(element);
-  //   objArr.push({location: element,
-  //                occurrences: occurrences[index],
-  //                hashtags: hashtagsFromDB[index],
-  //                urls: articlesFromDB});
-  //   return objArr;
-  // });
 
   locations.forEach((element, index) => {
     // Sort occurrences by hashtag_count
@@ -85,10 +68,8 @@ const handleData = async () => {
     element.occurrences = occurrencesFromDB[index];
   })
 
-  // console.log(hashtagsFromDB);
   let uniqHashtags = [];
   hashtagsFromDB.forEach((element) => {
-    // console.log(element);
     if (element) {
       element.forEach(hTag => {
         if(!uniqHashtags.includes(hTag)) {
@@ -155,21 +136,9 @@ function filterOccurrences(occurrencesFromDB) {
       }
     })
 
-    // countedHashtags.sort(function(a, b){
-    //   return b.hashtag_count - a.hashtag_count;
-    // })
     occurrByLocation.push(countedHashtags);
   })
 
-  // ! Limit for the amount of hashtags per location
-  // console.log(occurrByLocation);
-  // const limit = [];
-  // occurrByLocation.forEach(element => {
-  //   limit.push(element.slice(0, 10));
-  // })
-  // occurrByLocation.slice(0, 10);
-
-  // console.log(limit);
   return occurrByLocation;
 }
 
