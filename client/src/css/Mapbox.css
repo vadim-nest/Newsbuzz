@@ -17,8 +17,6 @@ h1 {
 }
 
 .mapboxgl-popup {
-  /* background: rgba(0,0,0,0.0); */
-  /* width: 400px; */
   padding: 0px;
 }
 
@@ -32,18 +30,13 @@ h1 {
 
 .mapboxgl-popup-content {
   background: rgba(0,0,0, 0) !important;
-  /* display: hidden !important; */
-  /* border-radius: 30%; */
   width: fit-content;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  /* overflow: auto; */
   top: 0px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* width: 400px;
-  height: 400px; */
   margin: 0px;
   padding: 0px;
 }
@@ -75,11 +68,9 @@ h1 {
 
 ul {
   list-style-type: none;
-  /* padding: 0px; */
   margin: 0px;
   padding-left: 15px;
   padding-right: 15px;
-  /* background-color: #f2f2f2; */
   color: white;
   text-align: left;
   font-size: 14px;
@@ -102,22 +93,22 @@ a {
 }
 
 a:link {
-  color: #555;
+  color: #bbb;
 }
 
 /* visited link */
 a:visited {
-  color: #555;
+  color: #bbb;
 }
 
 /* mouse over link */
 a:hover {
-  color: #555;
+  color: #bbb;
 }
 
 /* selected link */
 a:active {
-  color: #555;
+  color: #bbb;
 }
 
 h3 {

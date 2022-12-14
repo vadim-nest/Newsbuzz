@@ -2,6 +2,9 @@ const PORT = process.env.port || 3000;
 const express = require('express');
 const router = require('./routers/router');
 const sequelize = require('./models/index');
+const { populateDB } = require('./populateDB/populateDB')
+
+populateDB();
 
 const cors = require('cors');
 const corsConfig = {

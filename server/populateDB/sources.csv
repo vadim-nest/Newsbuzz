@@ -1,0 +1,17 @@
+"id","name","main_page_url","createdAt","updatedAt","location_id"
+1,"The Guardian","https://www.theguardian.com/uk","2022-11-11 10:38:29.989+00","2022-11-11 10:38:29.989+00",4
+2,"BBC","https://www.bbc.co.uk/news","2022-11-11 10:38:35.137+00","2022-11-11 10:38:35.137+00",4
+4,"The Telegraph","https://www.telegraph.co.uk/","2022-11-11 10:43:33.806+00","2022-11-11 10:43:33.806+00",4
+5,"Daily Mail","https://www.dailymail.co.uk/home/index.html","2022-11-11 10:44:26.51+00","2022-11-11 10:44:26.51+00",4
+6,"Liverpool BBC","https://www.bbc.co.uk/news/england/merseyside","2022-11-11 10:53:36.86+00","2022-11-11 10:53:36.86+00",3
+7,"Liverpool Independent","https://www.independent.co.uk/topic/liverpool","2022-11-11 10:55:19.053+00","2022-11-11 10:55:19.053+00",3
+8,"Liverpool Echo","https://www.liverpoolecho.co.uk/news/liverpool-news/","2022-11-11 10:57:35.654+00","2022-11-11 10:57:35.654+00",3
+9,"Liverpool Express","https://liverpoolexpress.co.uk/","2022-11-11 10:58:00.864+00","2022-11-11 10:58:00.864+00",3
+10,"Edinburgh BBC","https://www.bbc.co.uk/news/scotland/edinburgh_east_and_fife","2022-11-11 11:04:13.752+00","2022-11-11 11:04:13.752+00",2
+11,"Edinburgh Daily Record","https://www.dailyrecord.co.uk/all-about/edinburgh","2022-11-11 11:05:02.107+00","2022-11-11 11:05:02.107+00",2
+12,"Edinburgh Live","https://www.edinburghlive.co.uk/news/edinburgh-news/","2022-11-11 11:05:26.148+00","2022-11-11 11:05:26.148+00",2
+13,"Edinburgh News","https://www.edinburghnews.scotsman.com/","2022-11-11 11:05:57.36+00","2022-11-11 11:05:57.36+00",2
+14,"Evening Standard","https://www.standard.co.uk/","2022-11-15 23:55:32.31+00","2022-11-15 23:55:32.31+00",1
+15,"London Metro","https://metro.co.uk/tag/london/","2022-11-16 00:19:07.697+00","2022-11-16 00:19:07.697+00",1
+16,"Birmingham Mail","https://www.birminghammail.co.uk/","2022-11-16 00:56:41.211+00","2022-11-16 00:56:41.211+00",7
+17,"Express & Star","https://www.expressandstar.com/news/local-hubs/birmingham/","2022-11-16 01:11:37.351+00","2022-11-16 01:11:37.351+00",7
