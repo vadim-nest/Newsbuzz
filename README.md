@@ -45,3 +45,19 @@ npm start
 ```
 
 ### Enjoy!
+
+## Made using:
+-  React
+-  mapbox (Maps API)
+-  Node.js
+-  ExpressJS
+-  PostgreSQL
+-  Sequelize
+-  Axios
+-  Cheerio
+
+Alternatively, you can watch my video presentation:
+https://youtu.be/nDBfXSMiDnw
+
+### Author
+Vadim Gnezdyshkin - [LinkedIn](https://www.linkedin.com/in/vadim-nest/) [GitHub](https://github.com/vadim-nest)
