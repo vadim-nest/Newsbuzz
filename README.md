@@ -22,7 +22,7 @@ cd Newsbuzz
 
 2. For the program to run properly, you need to get an API key from [www.mapbox.com](https://www.mapbox.com/).
 
-When you get an API key, you need to paste it into Newzbuzz/Client/public/env.js
+   When you get an API key, you need to paste it into Newzbuzz/Client/public/env.js
 
 3. Add the hashtags data from .csv files to the db
 ```bash
