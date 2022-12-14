@@ -19,7 +19,7 @@ git clone https://github.com/vadim-nest/Newsbuzz.git
 cd Newsbuzz
 ```
 
-2. How do I put the right API?
+2. How do I put the right API? npm i somewhere?
 
 3. Add the hashtags data from .csv files to the db
 ```bash
