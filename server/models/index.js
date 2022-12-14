@@ -3,8 +3,8 @@ const db = {};
 const fs = require('fs');
 const path = require('path');
 
-const sequelize = new Sequelize('newsbuzz', 'postgres', '1234', {
-  dialect: 'postgres',
+const sequelize = new Sequelize('newsbuzz', process.env.DATABASE_USERNAME || 'postgres', process.env.DATABASE_PASSWORD || '1234', {
+  dialect: process.env.DATABASE_DIALECT || 'postgres',
   logging: false,
 });
 

@@ -1,6 +1,8 @@
+require('dotenv').config();
 const sequelize = require('../models');
 const fs = require('fs');
 const csvParser = require('csv-parser');
+const { createDB } = require('./setUpDB');
 
 async function populateArticles() {
   await new Promise((resolve, reject) => {
@@ -104,6 +106,7 @@ async function populateSources() {
 };
 
 async function populateDB () {
+  await createDB();
   await populateArticles();
   await populateLocations();
   await populateHashtags();
