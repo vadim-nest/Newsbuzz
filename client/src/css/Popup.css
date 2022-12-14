@@ -1,7 +1,8 @@
 .popup-wrapper{
   background-color: #1C2225;
   color: white;
+  border: 3px solid white;
   border-radius: 3%;
-  width: fit-content;
-  padding: 20px 15px 20px 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  margin-top: -10px;
+  margin-bottom: -16px;
 }
