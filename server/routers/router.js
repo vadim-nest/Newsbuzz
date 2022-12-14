@@ -12,6 +12,7 @@ const {
   getSources,
 } = require('../controllers/getFromDB');
 const { addLocation, addSource } = require('../controllers/addToDB');
+// const { populateDB } = require('./populateDB/populateDB')
 
 router.get('/', (req, res) => {
   res.send('Hello people');
@@ -60,6 +61,16 @@ router.post('/addSource', (req, res) => {
     res.send(400);
   }
 });
+
+// router.post('/populateDB', (req, res) => {
+//   try {
+//     populateDB();
+//     res.send(201);
+//   } catch (error) {
+//     console.log(error);
+//     res.send(400);
+//   }
+// })
 
 async function callingFilterBySite() {
   const sources = await sequelize.models.source.findAll();

@@ -17,7 +17,27 @@ async function populateArticles() {
     })
     .on('end', (allData) => {
       // all data has been parsed
-      console.log('articles table has been populated');
+      console.log('1/5 - articles table has been populated');
+    });
+  });
+};
+
+async function populateLocations() {
+  await new Promise((resolve, reject) => {
+    fs.createReadStream('../server/populateDB/locations.csv')
+    .pipe(csvParser())
+    .on('data', async (data) => {
+      // data is an object representing a single line from the CSV file
+      try {
+        await sequelize.models.location.create(data);
+        resolve(true);
+      } catch (error) {
+        console.log(error);
+      }
+    })
+    .on('end', (allData) => {
+      // all data has been parsed
+      console.log('2/5 - locations table has been populated');
     });
   });
 };
@@ -38,47 +58,7 @@ async function populateHashtags() {
     })
     .on('end', (allData) => {
       // all data has been parsed
-      console.log('hashtags table has been populated');
-    });
-  });
-};
-
-async function populateLocations() {
-  await new Promise((resolve, reject) => {
-    fs.createReadStream('../server/populateDB/locations.csv')
-    .pipe(csvParser())
-    .on('data', async (data) => {
-      // data is an object representing a single line from the CSV file
-      try {
-        await sequelize.models.location.create(data);
-        resolve(true);
-      } catch (error) {
-        console.log(error);
-      }
-    })
-    .on('end', (allData) => {
-      // all data has been parsed
-      console.log('locations table has been populated');
-    });
-  });
-};
-
-async function populateSources() {
-  await new Promise((resolve, reject) => {
-    fs.createReadStream('../server/populateDB/sources.csv')
-    .pipe(csvParser())
-    .on('data', async (data) => {
-      // data is an object representing a single line from the CSV file
-      try {
-        await sequelize.models.source.create(data);
-        resolve(true);
-      } catch (error) {
-        console.log(error);
-      }
-    })
-    .on('end', (allData) => {
-      // all data has been parsed
-      console.log('sources table has been populated');
+      console.log('3/5 - hashtags table has been populated');
     });
   });
 };
@@ -98,7 +78,27 @@ async function populateOccurrences() {
     })
     .on('end', (allData) => {
       // all data has been parsed
-      console.log('occurrences table has been populated');
+      console.log('4/5 - occurrences table has been populated');
+    });
+  });
+};
+
+async function populateSources() {
+  await new Promise((resolve, reject) => {
+    fs.createReadStream('../server/populateDB/sources.csv')
+    .pipe(csvParser())
+    .on('data', async (data) => {
+      // data is an object representing a single line from the CSV file
+      try {
+        await sequelize.models.source.create(data);
+        resolve(true);
+      } catch (error) {
+        console.log(error);
+      }
+    })
+    .on('end', (allData) => {
+      // all data has been parsed
+      console.log('5/5 - sources table has been populated');
     });
   });
 };
