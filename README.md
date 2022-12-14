@@ -11,3 +11,32 @@ Users can zoom in and out of the map to see more or less detail, and can click o
 ![image](https://user-images.githubusercontent.com/54317800/207690108-5fe67131-f12a-4379-9dbe-c7a6479e6550.png)
 
 ## Getting started
+
+## Installation
+1. Clone the repo
+```bash
+git clone https://github.com/vadim-nest/Newsbuzz.git
+cd Newsbuzz
+```
+
+2. How do I put the right API?
+
+3. Add the hashtags data from .csv files to the db
+```bash
+cd server
+npm start
+```
+
+You should see the following output in the console:
+```
+Populating the database:
+1/5 - articles table has been populated
+2/5 - locations table has been populated
+3/5 - hashtags table has been populated
+4/5 - occurrences table has been populated
+5/5 - sources table has been populated
+Server is running in PORT:3000
+```
+
+4. Now your server is ready and you can run the client:
+
