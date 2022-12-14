@@ -10,4 +10,4 @@ Users can zoom in and out of the map to see more or less detail, and can click o
 
 ![image](https://user-images.githubusercontent.com/54317800/207690108-5fe67131-f12a-4379-9dbe-c7a6479e6550.png)
 
-# Getting started
+## Getting started
